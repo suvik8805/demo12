@@ -88,6 +88,7 @@ namespace pelihahmoliikkuvuus
         private void UpdateLocation()
         {
             SetValue(Canvas.LeftProperty, LocationX);
+            SetValue(Canvas.TopProperty, LocationY);
         }
 
         public void MoveUp()

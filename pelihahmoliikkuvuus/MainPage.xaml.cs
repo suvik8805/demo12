@@ -24,6 +24,8 @@ namespace pelihahmoliikkuvuus
     public sealed partial class MainPage : Page
     {
         private Pelihahmo pelihahmo;
+        private Pahis pahis;
+        private Seinä seinä;
 
         // näppäinten arvot ylös/alas
         private bool LeftPressed;
@@ -47,13 +49,29 @@ namespace pelihahmoliikkuvuus
             // hahmo taustaan
 
             pelihahmo = new Pelihahmo
-            { 
-                LocationX = Tausta.Width / 2,
-                LocationY = Tausta.Height / 2
+            {
+                LocationX = 10,
+                LocationY = 550
             };
-            
+
             Tausta.Children.Add(pelihahmo);
 
+           pahis = new Pahis
+                {
+                LocationX = 400,
+                LocationY = 400
+               };
+
+            Tausta.Children.Add(pahis);
+
+            seinä = new Seinä
+            {
+                LocationX = 500,
+                LocationY = 300
+            };
+
+            Tausta.Children.Add(seinä);
+            
             //näppäimet alas/ylös
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
             Window.Current.CoreWindow.KeyUp += CoreWindow_KeyUp;
@@ -74,14 +92,19 @@ namespace pelihahmoliikkuvuus
             if (RightPressed) pelihahmo.MoveRight();
             if (Uppressed) pelihahmo.MoveUp();
             if (Downpressed) pelihahmo.MoveDown();
-           
+
+            pahis.Move();
+            
+            
             
            
 
             //päivitä sijainti
             pelihahmo.SetLocation();
-
+            pahis.SetLocation();
+            seinä.SetLocation();
         }
+       
 
         private void CoreWindow_KeyUp(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs args)
         {
