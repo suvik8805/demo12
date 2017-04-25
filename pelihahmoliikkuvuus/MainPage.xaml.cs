@@ -28,12 +28,17 @@ namespace pelihahmoliikkuvuus
         // näppäinten arvot ylös/alas
         private bool LeftPressed;
         private bool RightPressed;
+        private bool Uppressed;
+        private bool Downpressed;
+
 
         //pelilloopi
         private DispatcherTimer timer;
        
 
         public object SpriteSheetOffset { get; private set; }
+        public double LocationY { get; private set; }
+        public double LocationX { get; private set; }
 
         public MainPage()
         {
@@ -41,7 +46,11 @@ namespace pelihahmoliikkuvuus
 
             // hahmo taustaan
 
-            pelihahmo = new Pelihahmo();
+            pelihahmo = new Pelihahmo
+            { 
+                LocationX = Tausta.Width / 2,
+                LocationY = Tausta.Height / 2
+            };
             
             Tausta.Children.Add(pelihahmo);
 
@@ -58,11 +67,16 @@ namespace pelihahmoliikkuvuus
 
         private void Timer_Tick(object sender, object e)
         {
+
+
+
+            if (LeftPressed) pelihahmo.MoveLeft();
+            if (RightPressed) pelihahmo.MoveRight();
+            if (Uppressed) pelihahmo.MoveUp();
+            if (Downpressed) pelihahmo.MoveDown();
+           
             
-
-
-            if (LeftPressed) pelihahmo.Move(-1);
-            if (RightPressed) pelihahmo.Move(1);
+           
 
             //päivitä sijainti
             pelihahmo.SetLocation();
@@ -78,6 +92,12 @@ namespace pelihahmoliikkuvuus
                     break;
                 case VirtualKey.Right:
                     RightPressed = false;
+                    break;
+                case VirtualKey.Up:
+                    Uppressed = false;
+                    break;
+                case VirtualKey.Down:
+                    Downpressed = false;
                     break;
 
 
@@ -95,9 +115,17 @@ namespace pelihahmoliikkuvuus
                 case VirtualKey.Right:
                     RightPressed = true;
                     break;
+                case VirtualKey.Up:
+                    Uppressed = true;
+                    break;
+                case VirtualKey.Down:
+                    Downpressed = true;
+                    break;
 
 
             }
+            
+            }
         }
     }
-}
+

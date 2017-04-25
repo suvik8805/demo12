@@ -52,11 +52,13 @@ namespace pelihahmoliikkuvuus
         //sijainti x ja y -akselit
         public double LocationX { get; set; }
         public double LocationY { get; set; }
-        public object ButterflyRotateAngle { get; private set; }
         public object SpriteSheetOffset { get; private set; }
+        public double Top { get; internal set; }
+        public bool y { get; internal set; }
 
         //kääntymisen arvot
         private double Angle = 0; // tulee objektin määrittelystä
+    
 
         internal void Move(int v)
         {
@@ -65,27 +67,51 @@ namespace pelihahmoliikkuvuus
 
         private void Timer_Tick(object sender, object e)
         {
-            SpriteSheetOffset.Y = currentFrame * -frameHeight;
+            SpriteSheetOffset = currentFrame * -frameHeight;
         }
 
         //vauhti
-        public void Move()
+        public void MoveLeft()
         {
-            speed += Accelerate;
-            if (speed > Maxspeed) speed = Maxspeed;
 
-            Angle += direction * AngleStep; //-1*5 or 1*5
-  
+            LocationX -= 5;
+            UpdateLocation();
+
         }
 
+        public void MoveRight()
+        {
+            LocationX += 5;
+            UpdateLocation();
+        }
+
+        private void UpdateLocation()
+        {
+            SetValue(Canvas.LeftProperty, LocationX);
+        }
+
+        public void MoveUp()
+        {
+            LocationY -= 5;
+            UpdateLocation();
+            
+        }
+        public void MoveDown()
+        {
+            LocationY += 5;
+            UpdateLocation();
+        }
         // sijainnin päivitys
         public void SetLocation()
         {
             SetValue(Canvas.LeftProperty, LocationX); // vaakalinja
             SetValue(Canvas.TopProperty, LocationY); // pystylinja
         }
-        
 
+        internal void Location()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 
