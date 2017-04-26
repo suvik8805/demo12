@@ -28,6 +28,7 @@ namespace pelihahmoliikkuvuus
         private Seinä seinä;
         private Pahis2 pahis2;
         private Pahis3 pahis3;
+        public List<Karkki> karkit;
 
         // näppäinten arvot ylös/alas
         private bool LeftPressed;
@@ -87,7 +88,7 @@ namespace pelihahmoliikkuvuus
 
             Tausta.Children.Add(seinä);
 
-            List<Karkki> karkit = new List<Karkki>();
+            Karkki karkki = new Karkki();
             karkit.Add(new Karkki { LocationX = 498, LocationY = 48 });
             karkit.Add(new Karkki { LocationX = 368, LocationY = 322 });
             karkit.Add(new Karkki { LocationX = 230, LocationY = 414 });
@@ -98,9 +99,8 @@ namespace pelihahmoliikkuvuus
             {
                 Tausta.Children.Add(Karkki);
                 Karkki.SetLocation();
-                
+                karkit.Add(karkki);
             };
-
 
 
 
@@ -139,9 +139,66 @@ namespace pelihahmoliikkuvuus
             pelihahmo.SetLocation();
             pahis.SetLocation();
             seinä.SetLocation();
+
             
         }
-       
+
+
+
+        /*
+        private void KarkkiCollision()
+        {
+            //loop list
+            foreach (Karkki karkki in karkit)
+            {
+                //get rects
+                Rect HRect = new Rect(
+                    pelihahmo.LocationX, pelihahmo.LocationY,
+                    pelihahmo.ActualWidth, pelihahmo.ActualHeight
+                    );
+                Rect KRect = new Rect(
+                    karkki.LocationX, karkki.LocationY,
+                    karkki.ActualWidth, karkki.ActualHeight
+                    );
+                // törmäys?
+                HRect.Intersect(KRect);
+                if (!HRect.IsEmpty) //negaatio
+                {
+                    // Törmäys!
+                    Tausta.Children.Remove(karkki);
+                    // poisto listasta
+                    karkit.Remove(karkki);
+                    karkki.Picked = true;
+                    break;
+                }
+            }
+        }
+        */
+
+        private void PahisCollision()
+        {
+            Rect PRect = new Rect(
+                pahis.LocationX, pahis.LocationY,
+                pahis.ActualWidth, pahis.ActualHeight);
+            Rect HRect = new Rect(
+                pelihahmo.LocationX, pelihahmo.LocationY,
+                pelihahmo.ActualHeight, pelihahmo.ActualWidth);
+          //  Rect PRect2 = new Rect(
+              //  pahis2.LocationX, pahis2.LocationY,
+               // pahis2.ActualWidth, pahis2.ActualHeight);
+            HRect.Intersect(PRect);
+            if (!HRect.IsEmpty)
+            {
+                Tausta.Children.Remove(pahis);
+                
+            }
+
+            }
+        
+
+
+
+
 
         private void CoreWindow_KeyUp(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs args)
         {
