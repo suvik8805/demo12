@@ -26,6 +26,7 @@ namespace pelihahmoliikkuvuus
         private Pelihahmo pelihahmo;
         private Pahis pahis;
         private Seinä seinä;
+        private Pahis2 pahis2;
 
         // näppäinten arvot ylös/alas
         private bool LeftPressed;
@@ -58,15 +59,21 @@ namespace pelihahmoliikkuvuus
 
            pahis = new Pahis
                 {
-                LocationX = 400,
-                LocationY = 400
+                LocationX = 184,
+                LocationY = 50
                };
 
             Tausta.Children.Add(pahis);
+            pahis2 = new Pahis2
+            {
+                LocationX = 230,
+                LocationY = 370
+            };
+            Tausta.Children.Add(pahis2);
 
             seinä = new Seinä
             {
-                LocationX = 500,
+                LocationX = 300,
                 LocationY = 300
             };
 
@@ -94,6 +101,7 @@ namespace pelihahmoliikkuvuus
             if (Downpressed) pelihahmo.MoveDown();
 
             pahis.Move();
+            pahis2.Move();
             
             
             

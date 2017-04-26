@@ -17,39 +17,38 @@ using Windows.UI.Xaml.Navigation;
 
 namespace pelihahmoliikkuvuus
 {
-    public sealed partial class Pahis : UserControl
+    public sealed partial class Pahis2 : UserControl
     {
         public double LocationX { get; set; }
         public double LocationY { get; set; }
         private int direction = 1;
-        private int MinX = 184;
-        private int maxX = 730;
+        private int MinX = 230;
+        private int maxX = 552;
         private int step = 5;
 
 
-        public Pahis()
+        public Pahis2()
         {
             this.InitializeComponent();
-       
+
         }
         public void Move()
         {
             if (LocationX < MinX || LocationX > maxX) direction = direction * (-1);
             LocationX += direction * step;
             UpdateLocation();
-        }     
+        }
 
         private void UpdateLocation()
         {
             SetValue(Canvas.LeftProperty, LocationX);
-     
+            SetValue(Canvas.TopProperty, LocationY);
+
         }
         public void SetLocation()
         {
             SetValue(Canvas.LeftProperty, LocationX); // vaakalinja
             SetValue(Canvas.TopProperty, LocationY); // pystylinja
         }
-
     }
-
 }

@@ -109,6 +109,9 @@
     <Compile Include="Pahis.xaml.cs">
       <DependentUpon>Pahis.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pahis2.xaml.cs">
+      <DependentUpon>Pahis2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pelihahmo.xaml.cs">
       <DependentUpon>Pelihahmo.xaml</DependentUpon>
     </Compile>
@@ -151,6 +154,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pahis.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pahis2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
