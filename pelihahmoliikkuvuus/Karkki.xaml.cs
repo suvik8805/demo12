@@ -22,13 +22,19 @@ namespace pelihahmoliikkuvuus
         public double LocationX { get; set; }
         public double LocationY { get; set; }
         public bool Picked = false;
-
-
+       
 
 
         public Karkki()
         {
             this.InitializeComponent();
+        }
+
+        private void UpdateLocation()
+        {
+            SetValue(Canvas.LeftProperty, LocationX);
+            SetValue(Canvas.TopProperty, LocationY);
+
         }
         public void SetLocation()
         {

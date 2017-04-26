@@ -86,7 +86,26 @@ namespace pelihahmoliikkuvuus
             };
 
             Tausta.Children.Add(seinä);
-            
+
+            List<Karkki> karkit = new List<Karkki>();
+            karkit.Add(new Karkki { LocationX = 498, LocationY = 48 });
+            karkit.Add(new Karkki { LocationX = 368, LocationY = 322 });
+            karkit.Add(new Karkki { LocationX = 230, LocationY = 414 });
+            karkit.Add(new Karkki { LocationX = 736, LocationY = 184 });
+            karkit.Add(new Karkki { LocationX = 460, LocationY =552 });
+
+            foreach (Karkki Karkki in karkit)
+            {
+                Tausta.Children.Add(Karkki);
+                Karkki.SetLocation();
+                
+            };
+
+
+
+
+
+
             //näppäimet alas/ylös
             Window.Current.CoreWindow.KeyDown += CoreWindow_KeyDown;
             Window.Current.CoreWindow.KeyUp += CoreWindow_KeyUp;
@@ -120,6 +139,7 @@ namespace pelihahmoliikkuvuus
             pelihahmo.SetLocation();
             pahis.SetLocation();
             seinä.SetLocation();
+            
         }
        
 
