@@ -17,25 +17,25 @@ using Windows.UI.Xaml.Navigation;
 
 namespace pelihahmoliikkuvuus
 {
-    public sealed partial class Pahis2 : UserControl
+    public sealed partial class Pahis3 : UserControl
     {
         public double LocationX { get; set; }
         public double LocationY { get; set; }
         private int direction = 1;
-        private int MinX = 230;
-        private int maxX = 500;
+        private int MinY = 140;
+        private int maxY = 500;
         private int step = 5;
 
 
-        public Pahis2()
+        public Pahis3()
         {
             this.InitializeComponent();
 
         }
         public void Move()
         {
-            if (LocationX < MinX || LocationX > maxX) direction = direction * (-1);
-            LocationX += direction * step;
+            if (LocationY < MinY || LocationY > maxY) direction = direction * (-1);
+            LocationY += direction * step;
             UpdateLocation();
         }
 
